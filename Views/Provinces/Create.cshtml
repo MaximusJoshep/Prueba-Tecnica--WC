@@ -1,0 +1,47 @@
+﻿@model prueba_tecnica.Models.Province
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Province</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="name" class="control-label"></label>
+                <input asp-for="name" class="form-control" />
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="n_puesto" clcss="mb-0">Selecciona la region</label>
+                    <select class="form-control input-sm" id="region" name="region">
+                        {{#select n_puesto}}
+
+                        @foreach (var item in ViewBag.Regions)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                        {{/select}}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
